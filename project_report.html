@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SRS & Technical Project Report - Quetta Tech Solutions</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+    
+    <style>
+        @page {
+            size: A4;
+            margin: 16mm 14mm 16mm 14mm;
+        }
+        
+        * {
+            box-sizing: border-box;
+            -webkit-print-color-adjust: exact !important;
+            print-color-adjust: exact !important;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+            color: #1e293b;
+            background: #ffffff;
+            font-size: 9.2pt;
+            line-height: 1.45;
+            margin: 0;
+            padding: 0;
+        }
+
+        .page {
+            page-break-after: always;
+            position: relative;
+            min-height: 260mm;
+            padding-bottom: 24px;
+        }
+
+        .page:last-child {
+            page-break-after: avoid;
+        }
+
+        /* Document Header */
+        .doc-header {
+            border-bottom: 2.5px solid #00b4d8;
+            padding-bottom: 10px;
+            margin-bottom: 12px;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+        }
+
+        .doc-title {
+            font-size: 16pt;
+            font-weight: 800;
+            color: #0b132b;
+            margin: 0;
+            letter-spacing: -0.02em;
+        }
+
+        .doc-subtitle {
+            font-size: 8.5pt;
+            color: #0096c7;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-top: 2px;
+        }
+
+        .doc-meta {
+            text-align: right;
+            font-size: 7.8pt;
+            color: #64748b;
+            line-height: 1.35;
+        }
+
+        /* Headings */
+        h1.section-title {
+            font-size: 11.5pt;
+            font-weight: 800;
+            color: #0b132b;
+            background: #f1f5f9;
+            padding: 5px 8px;
+            border-left: 4px solid #00b4d8;
+            border-radius: 0 4px 4px 0;
+            margin: 12px 0 8px 0;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+        }
+
+        h2.subsection-title {
+            font-size: 10pt;
+            font-weight: 700;
+            color: #1c2541;
+            margin: 10px 0 4px 0;
+        }
+
+        p {
+            margin: 0 0 6px 0;
+            text-align: justify;
+        }
+
+        /* Callout Box */
+        .callout-box {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-left: 3.5px solid #00b4d8;
+            padding: 8px 10px;
+            border-radius: 4px;
+            margin: 8px 0;
+            font-size: 8.8pt;
+        }
+
+        .callout-title {
+            font-weight: 700;
+            color: #0b132b;
+            margin-bottom: 3px;
+        }
+
+        /* Tables */
+        table.report-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 8px 0;
+            font-size: 8pt;
+        }
+
+        table.report-table th {
+            background-color: #0f172a;
+            color: #ffffff;
+            font-weight: 700;
+            text-align: left;
+            padding: 6px 8px;
+            border: 1px solid #0f172a;
+        }
+
+        table.report-table td {
+            padding: 6px 8px;
+            border: 1px solid #e2e8f0;
+            vertical-align: top;
+        }
+
+        table.report-table tr:nth-child(even) {
+            background-color: #f8fafc;
+        }
+
+        /* Code and monospace */
+        code {
+            font-family: 'JetBrains Mono', monospace;
+            background: #f1f5f9;
+            color: #0284c7;
+            padding: 1px 3px;
+            border-radius: 3px;
+            font-size: 7.8pt;
+        }
+
+        /* Key Metrics Grid */
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 6px;
+            margin: 8px 0;
+        }
+
+        .metric-card {
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 5px;
+            padding: 6px 8px;
+            text-align: center;
+        }
+
+        .metric-value {
+            font-size: 11.5pt;
+            font-weight: 800;
+            color: #00b4d8;
+        }
+
+        .metric-label {
+            font-size: 7pt;
+            color: #64748b;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        /* Page Footers */
+        .page-footer {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            border-top: 1px solid #e2e8f0;
+            padding-top: 4px;
+            display: flex;
+            justify-content: space-between;
+            font-size: 7.2pt;
+            color: #94a3b8;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ========================================================================= -->
+    <!-- PAGE 1: BUSINESS PROBLEM & LOCAL INDUSTRY CONTEXT -->
+    <!-- ========================================================================= -->
+    <div class="page">
+        <div class="doc-header">
+            <div>
+                <h1 class="doc-title">QUETTA TECH SOLUTIONS</h1>
+                <div class="doc-subtitle">Software Requirements Specification & Technical Evaluation</div>
+            </div>
+            <div class="doc-meta">
+                <strong>Project:</strong> Full-Stack IT & Computer Services Platform<br>
+                <strong>Stack:</strong> PHP 8+, MySQL (PDO), Bootstrap 5, JS<br>
+                <strong>Classification:</strong> Academic Final Project & Client SRS
+            </div>
+        </div>
+
+        <div class="metrics-grid">
+            <div class="metric-card">
+                <div class="metric-value">4</div>
+                <div class="metric-label">Relational Tables</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-value">100%</div>
+                <div class="metric-label">Prepared Statements</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-value">Full CRUD</div>
+                <div class="metric-label">Services & Gallery</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-value">BCRYPT</div>
+                <div class="metric-label">Password Hashing</div>
+            </div>
+        </div>
+
+        <h1 class="section-title">1. Executive Summary & Market Context</h1>
+        <p>
+            This document details the Software Requirements Specification (SRS) and technical implementation for <strong>Quetta Tech Solutions</strong>, an enterprise-grade full-stack web application designed for computer repair, enterprise networking, and IT infrastructure services in Quetta, Balochistan. The system bridges the gap between customer inquiry handling, transparent repair pricing, and secure back-office administrative operations without recurring SaaS licensing overhead.
+        </p>
+
+        <h1 class="section-title">2. Business Problem & Operational Bottlenecks</h1>
+        <h2 class="subsection-title">2.1 Regional Industry Deficiencies in Quetta</h2>
+        <p>
+            The computer hardware and IT support ecosystem in Quetta has historically functioned via unorganized, brick-and-mortar storefronts along <strong>Zarghoon Road, Jinnah Road, and Liaquat Bazaar</strong>. While regional businesses, schools, and hospitals increasingly rely on IT infrastructure, the local repair sector operates under severe operational constraints:
+        </p>
+        
+        <div class="callout-box">
+            <div class="callout-title">Key Operational Inefficiencies Identified:</div>
+            <ul style="margin: 2px 0 0 0; padding-left: 16px;">
+                <li><strong>Information Asymmetry & Pricing Opacity:</strong> Customers face arbitrary repair estimates, surprise diagnostic fees, and undocumented hardware replacement pricing. Trust remains low without an authenticated public baseline pricing catalog.</li>
+                <li><strong>Fragmented & Lost Lead Intake:</strong> Inquiries collected via handwritten shop slips or informal WhatsApp chats result in lost leads, unassigned customer tickets, and zero accountability.</li>
+                <li><strong>Absence of Verifiable Visual Portfolio:</strong> Technical competencies (such as motherboard micro-soldering, CCTV installations, and fiber routing) cannot be verified by enterprise clients without an authenticated digital portfolio.</li>
+                <li><strong>Administrative Data Silos:</strong> Small-to-medium IT businesses lack an accessible, lightweight administrative system to manage service catalogs, inspect customer inquiries, and archive completed projects.</li>
+            </ul>
+        </div>
+
+        <h2 class="subsection-title">2.2 Formal Problem Statement</h2>
+        <p>
+            <em>"How can a localized IT engineering firm in Quetta establish a secure, high-performance, and verifiable digital platform that automates customer inquiries, transparently publishes dynamic service pricing, and provides administrative staff with authenticated CRUD management over services and portfolio records without relying on bloated, high-overhead frameworks?"</em>
+        </p>
+
+        <h2 class="subsection-title">2.3 System Boundaries (SRS Scope)</h2>
+        <p>
+            The platform provides: (1) A responsive, high-speed public web portal with dynamic service catalog and inquiry processing, and (2) A protected administrative console with real-time analytics, full CRUD operations for services and gallery assets, and message inbox management.
+        </p>
+
+        <div class="page-footer">
+            <span>Quetta Tech Solutions — SRS & Technical Project Report</span>
+            <span>Page 1 of 3</span>
+        </div>
+    </div>
+
+    <!-- ========================================================================= -->
+    <!-- PAGE 2: PROPOSED TECHNICAL SOLUTION & ARCHITECTURE -->
+    <!-- ========================================================================= -->
+    <div class="page">
+        <div class="doc-header">
+            <div>
+                <h1 class="doc-title">QUETTA TECH SOLUTIONS</h1>
+                <div class="doc-subtitle">Section 3: Proposed Technical Solution & Architecture</div>
+            </div>
+            <div class="doc-meta">
+                <strong>Database:</strong> MySQL 8+ / MariaDB 10.4<br>
+                <strong>Security:</strong> CSRF, Session Fixation, MIME finfo<br>
+                <strong>Architecture:</strong> MVC-Separated Native PHP Layer
+            </div>
+        </div>
+
+        <h1 class="section-title">3. Proposed Technical Solution & Architecture</h1>
+        <p>
+            The system adheres to an <strong>MVC-separated architecture</strong> utilizing native PHP 8+ PDO for data access and modern browser standards for presentation, ensuring maximum security and performance.
+        </p>
+
+        <h2 class="subsection-title">3.1 Layered System Design</h2>
+        <table class="report-table">
+            <thead>
+                <tr>
+                    <th style="width: 25%;">Layer / Tier</th>
+                    <th style="width: 35%;">Technologies & Components</th>
+                    <th style="width: 40%;">Architectural Responsibility</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Presentation Layer</strong></td>
+                    <td>HTML5, CSS3, Bootstrap 5.3, Vanilla JS, Bootstrap Icons</td>
+                    <td>Responsive UI rendering across 320px–1440px breakpoints; dynamic counter animations; instant file upload previewing.</td>
+                </tr>
+                <tr>
+                    <td><strong>Controller / Logic</strong></td>
+                    <td>Native PHP 8+, Session Middleware, Helper Utilities</td>
+                    <td>Input sanitization via <code>sanitize()</code>, CSRF validation, HTTP redirect handling, flash message queueing.</td>
+                </tr>
+                <tr>
+                    <td><strong>Security & Auth</strong></td>
+                    <td><code>password_hash(PASSWORD_BCRYPT)</code>, <code>password_verify()</code></td>
+                    <td>Constant-time password verification, session fixation defense via <code>session_regenerate_id(true)</code>, Route guards.</td>
+                </tr>
+                <tr>
+                    <td><strong>Data Access (PDO)</strong></td>
+                    <td>Singleton PDO Factory, UTF-8 Prepared Statements</td>
+                    <td>Parameterized query execution preventing 100% of SQL injection vectors; native data type binding.</td>
+                </tr>
+                <tr>
+                    <td><strong>Persistence Layer</strong></td>
+                    <td>MySQL InnoDB Relational Engine</td>
+                    <td>Relational integrity, foreign key cascades, unique indexing on usernames/emails.</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h2 class="subsection-title">3.2 Relational Database Schema Design</h2>
+        <p>
+            The persistence layer consists of 4 normalized, relational tables in the <code>quetta_tech_solutions</code> database:
+        </p>
+        <ul style="margin: 3px 0 6px 0; padding-left: 16px; font-size: 8.5pt;">
+            <li><code>users</code> (<code>id</code> PK, <code>username</code> UNIQUE, <code>email</code> UNIQUE, <code>password</code>, <code>created_at</code>) — Administrative staff credentials.</li>
+            <li><code>services</code> (<code>id</code> PK, <code>user_id</code> FK $\rightarrow$ <code>users.id</code> ON DELETE CASCADE, <code>title</code>, <code>description</code>, <code>price</code>, <code>image</code>, <code>created_at</code>) — Active IT service catalog.</li>
+            <li><code>gallery</code> (<code>id</code> PK, <code>service_id</code> FK $\rightarrow$ <code>services.id</code> ON DELETE SET NULL, <code>image</code>, <code>caption</code>, <code>created_at</code>) — Visual project proof.</li>
+            <li><code>contact_messages</code> (<code>id</code> PK, <code>name</code>, <code>email</code>, <code>phone</code>, <code>subject</code>, <code>message</code>, <code>created_at</code>) — Inbound customer inquiry tickets.</li>
+        </ul>
+
+        <h2 class="subsection-title">3.3 Core Modules & Admin Subsystem</h2>
+        <p>
+            The administration subsystem provides authenticated staff with real-time KPI metrics (Total Services, Total Gallery Images, Total Inquiries) and full CRUD capabilities for services and gallery records with automatic disk file synchronization (<code>unlink()</code>) upon record updates and deletions.
+        </p>
+
+        <div class="page-footer">
+            <span>Quetta Tech Solutions — SRS & Technical Project Report</span>
+            <span>Page 2 of 3</span>
+        </div>
+    </div>
+
+    <!-- ========================================================================= -->
+    <!-- PAGE 3: AI METHODOLOGY, CHALLENGES & ROADMAP -->
+    <!-- ========================================================================= -->
+    <div class="page">
+        <div class="doc-header">
+            <div>
+                <h1 class="doc-title">QUETTA TECH SOLUTIONS</h1>
+                <div class="doc-subtitle">Section 4 & 5: AI Tools, Challenges Faced & Conclusion</div>
+            </div>
+            <div class="doc-meta">
+                <strong>Testing:</strong> 19/19 Automated Tests Passed<br>
+                <strong>Evaluation:</strong> Project Defense / Viva Voce Ready<br>
+                <strong>Status:</strong> Production Verified
+            </div>
+        </div>
+
+        <h1 class="section-title">4. AI Tools Used & Engineering Methodology</h1>
+        <p>
+            Advanced AI coding assistants (<strong>Google Antigravity IDE with Gemini 3.7</strong>) were strategically utilized throughout the development lifecycle as an architectural pair-programmer across four key domains:
+        </p>
+        <table class="report-table">
+            <thead>
+                <tr>
+                    <th style="width: 25%;">Phase</th>
+                    <th style="width: 35%;">AI Workflow & Prompting</th>
+                    <th style="width: 40%;">Implemented Deliverable</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>1. Database DDL</strong></td>
+                    <td>Schema normalization prompts specifying InnoDB foreign keys and BCRYPT seed hashes.</td>
+                    <td>Production-ready <code>quetta_tech_solutions.sql</code> with constraints and sample services.</td>
+                </tr>
+                <tr>
+                    <td><strong>2. Security Stack</strong></td>
+                    <td>Defense-in-depth prompting for image uploads (finfo magic bytes) and CSRF tokens.</td>
+                    <td>Hardened helper library in <code>includes/functions.php</code> and <code>includes/auth.php</code>.</td>
+                </tr>
+                <tr>
+                    <td><strong>3. Automated Testing</strong></td>
+                    <td>Subagent execution for unit test scripts and headless browser navigation.</td>
+                    <td>19 automated PHP tests in <code>test_suite.php</code> and end-to-end browser validation.</td>
+                </tr>
+                <tr>
+                    <td><strong>4. Frontend System</strong></td>
+                    <td>Tailored tokens for modern tech aesthetic (Navy <code>#0b132b</code>, Cyan <code>#00b4d8</code>).</td>
+                    <td>Responsive styling in <code>assets/css/style.css</code> and <code>admin.css</code>.</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h1 class="section-title">5. Engineering Challenges Faced & Solutions</h1>
+        
+        <div style="font-size: 8.3pt;">
+            <p style="margin-bottom: 3px;">
+                <strong>1. PHP "Headers Already Sent" on Form Redirection:</strong><br>
+                <em>Challenge:</em> Initial implementations included HTML header view templates before processing POST requests, causing <code>header('Location: ...')</code> redirects to fail.<br>
+                <em>Resolution:</em> Re-architected all form controllers (<code>contact.php</code>, <code>admin/services/create.php</code>, etc.) so that authentication, CSRF validation, file uploads, and database writes execute completely <em>before</em> rendering HTML headers.
+            </p>
+            <p style="margin-bottom: 3px;">
+                <strong>2. Malicious File Upload Prevention (PHP Shells):</strong><br>
+                <em>Challenge:</em> Standard <code>$_FILES</code> array variables can be spoofed by renaming malicious PHP scripts to image extensions.<br>
+                <em>Resolution:</em> Built a 4-tier pipeline: extension whitelisting, true binary MIME inspection using PHP's <code>finfo(FILEINFO_MIME_TYPE)</code>, 5MB size limit, and randomized cryptographically unique filenames.
+            </p>
+            <p style="margin-bottom: 3px;">
+                <strong>3. Disk Orphan File Cleanup:</strong><br>
+                <em>Challenge:</em> Updating or deleting database records left old image files occupying storage space.<br>
+                <em>Resolution:</em> Integrated <code>delete_uploaded_file()</code> hooks using PHP's <code>unlink()</code> to automatically remove old files on replacement or record deletion.
+            </p>
+            <p style="margin-bottom: 0;">
+                <strong>4. Session Fixation & CSRF Mitigation:</strong><br>
+                <em>Challenge:</em> Unprotected admin endpoints could be hijacked via forged requests or session fixation.<br>
+                <em>Resolution:</em> Embedded synchronized CSRF tokens in all state-changing forms and enforced <code>session_regenerate_id(true)</code> on login.
+            </p>
+        </div>
+
+        <h1 class="section-title" style="margin-top: 8px;">6. Conclusion & Future Roadmap</h1>
+        <p style="font-size: 8.3pt; margin-bottom: 0;">
+            The <strong>Quetta Tech Solutions</strong> project delivers a production-ready full-stack web application. Future iterations will incorporate: (1) SMS/WhatsApp automated repair alerts, (2) Online customer ticket tracking portal, and (3) Multi-role RBAC for staff and technicians.
+        </p>
+
+        <div class="page-footer">
+            <span>Quetta Tech Solutions — SRS & Technical Project Report</span>
+            <span>Page 3 of 3</span>
+        </div>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,236 @@
+/**
+ * ==============================================================================
+ * Quetta Tech Solutions - Admin Panel Stylesheet
+ * ==============================================================================
+ */
+
+:root {
+    --sidebar-width: 260px;
+    --admin-navy: #0f172a;
+    --admin-dark-card: #1e293b;
+    --admin-cyan: #00b4d8;
+    --admin-bg: #f1f5f9;
+}
+
+body.admin-body {
+    font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+    background-color: var(--admin-bg);
+    min-height: 100vh;
+}
+
+/* Admin Wrapper Layout */
+.admin-wrapper {
+    display: flex;
+    width: 100%;
+    min-height: 100vh;
+}
+
+/* Sidebar Styles */
+.admin-sidebar {
+    width: var(--sidebar-width);
+    background-color: var(--admin-navy);
+    color: #ffffff;
+    flex-shrink: 0;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1000;
+    overflow-y: auto;
+    transition: all 0.3s ease;
+    border-right: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.sidebar-brand {
+    padding: 24px 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+    color: #ffffff;
+}
+
+.sidebar-nav {
+    list-style: none;
+    padding: 20px 12px;
+    margin: 0;
+}
+
+.sidebar-heading {
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    color: #64748b;
+    text-transform: uppercase;
+    padding: 12px 14px 6px;
+}
+
+.sidebar-nav .nav-item {
+    margin-bottom: 4px;
+}
+
+.sidebar-nav .nav-link {
+    color: #94a3b8;
+    padding: 11px 16px;
+    border-radius: 8px;
+    font-size: 0.92rem;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    transition: all 0.2s ease;
+    text-decoration: none;
+}
+
+.sidebar-nav .nav-link i {
+    font-size: 1.15rem;
+    color: #64748b;
+    transition: color 0.2s ease;
+}
+
+.sidebar-nav .nav-link:hover {
+    color: #ffffff;
+    background-color: rgba(255, 255, 255, 0.06);
+}
+
+.sidebar-nav .nav-link:hover i {
+    color: var(--admin-cyan);
+}
+
+.sidebar-nav .nav-link.active {
+    color: #ffffff;
+    background: linear-gradient(90deg, rgba(0, 180, 216, 0.2), rgba(0, 180, 216, 0.05));
+    border-left: 3px solid var(--admin-cyan);
+    font-weight: 600;
+}
+
+.sidebar-nav .nav-link.active i {
+    color: var(--admin-cyan);
+}
+
+/* Main Content Area */
+.admin-main {
+    flex-grow: 1;
+    margin-left: var(--sidebar-width);
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    transition: all 0.3s ease;
+}
+
+/* Admin Top Bar */
+.admin-topbar {
+    background-color: #ffffff;
+    border-bottom: 1px solid #e2e8f0;
+    padding: 14px 28px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 900;
+}
+
+/* Dashboard Metric Cards */
+.metric-card {
+    background: #ffffff;
+    border-radius: 14px;
+    border: 1px solid #e2e8f0;
+    padding: 24px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.metric-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+}
+
+.metric-icon-box {
+    width: 52px;
+    height: 52px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+}
+
+.metric-value {
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--admin-navy);
+    line-height: 1.2;
+}
+
+/* Admin Tables */
+.admin-table-card {
+    background: #ffffff;
+    border-radius: 14px;
+    border: 1px solid #e2e8f0;
+    overflow: hidden;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.02);
+}
+
+.table thead th {
+    background-color: #f8fafc;
+    color: #475569;
+    font-weight: 600;
+    font-size: 0.82rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    border-bottom: 1px solid #e2e8f0;
+    padding: 14px 18px;
+}
+
+.table tbody td {
+    padding: 14px 18px;
+    vertical-align: middle;
+    color: #334155;
+    font-size: 0.92rem;
+    border-bottom: 1px solid #f1f5f9;
+}
+
+.thumbnail-preview {
+    width: 54px;
+    height: 54px;
+    border-radius: 8px;
+    object-fit: cover;
+    border: 1px solid #e2e8f0;
+}
+
+/* Image Upload Preview Box */
+.image-preview-container {
+    width: 100%;
+    max-width: 260px;
+    height: 170px;
+    border: 2px dashed #cbd5e1;
+    border-radius: 12px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #f8fafc;
+    position: relative;
+}
+
+.image-preview-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Responsive Sidebar Toggle */
+@media (max-width: 991.98px) {
+    .admin-sidebar {
+        margin-left: calc(-1 * var(--sidebar-width));
+    }
+    .admin-sidebar.show-sidebar {
+        margin-left: 0;
+    }
+    .admin-main {
+        margin-left: 0;
+    }
+}
